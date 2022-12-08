@@ -22,4 +22,22 @@ public class FileReader {
 
         return lines;
     }
+
+    public static List<List<Integer>> readFileToNumberGrid(String path) {
+        List<List<Integer>> lines = new ArrayList<>();
+        try (Scanner scanner = new Scanner(new File(path))) {
+            while (scanner.hasNext()) {
+                String[] parts = scanner.nextLine().split("");
+                List<Integer> digits = new ArrayList<>();
+                for (String digit: parts) {
+                    digits.add(Integer.parseInt(digit));
+                }
+                lines.add(digits);
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return lines;
+    }
 }
