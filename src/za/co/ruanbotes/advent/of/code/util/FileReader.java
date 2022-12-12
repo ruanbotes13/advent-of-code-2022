@@ -40,4 +40,22 @@ public class FileReader {
 
         return lines;
     }
+
+    public static List<List<Character>> readFileToCharacterGrid(String path) {
+        List<List<Character>> lines = new ArrayList<>();
+        try (Scanner scanner = new Scanner(new File(path))) {
+            while (scanner.hasNext()) {
+                String[] parts = scanner.nextLine().split("");
+                List<Character> chars = new ArrayList<>();
+                for (String digit: parts) {
+                    chars.add(digit.charAt(0));
+                }
+                lines.add(chars);
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return lines;
+    }
 }
