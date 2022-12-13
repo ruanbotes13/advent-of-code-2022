@@ -16,16 +16,16 @@ public class Main {
 //        DayTwelve dayTwelve = new DayTwelve();
 //        dayTwelve.run();
 //        System.out.println("=============================");
-//
-//        System.out.println("********** Day 11 **********");
-//        DayEleven day = new DayEleven();
-//        day.run();
-//        System.out.println("=============================");
 
-        System.out.println("********** Day 10 **********");
-        DayTen day = new DayTen();
+        System.out.println("********** Day 11 **********");
+        DayEleven day = new DayEleven();
         day.run();
         System.out.println("=============================");
+
+//        System.out.println("********** Day 10 **********");
+//        DayTen day = new DayTen();
+//        day.run();
+//        System.out.println("=============================");
 
 //        System.out.println("********** Day Eight **********");
 //        DayEight dayEight = new DayEight();

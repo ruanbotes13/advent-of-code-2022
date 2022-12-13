@@ -15,7 +15,7 @@ public class DayEleven {
         partOne(INPUT);
         System.out.println("==================");
         System.out.println("***** Part 2 *****");
-        partTwo(EXAMPLE);
+        partTwo(INPUT);
         System.out.println("==================");
     }
 
@@ -37,7 +37,7 @@ public class DayEleven {
             String itemString = lines.get(i+1).substring(18);
             String[] parts = itemString.split(", ");
             for (int j = 0; j < parts.length; j++) {
-                monkey.addItem(Integer.parseInt(parts[j]));
+                monkey.addItem(Long.parseLong(parts[j]));
             }
 
             // Add Operation
@@ -48,7 +48,7 @@ public class DayEleven {
             String operator = operationString.substring(2);
 
             if (!operator.equals("old")) {
-                monkey.addOperator(Integer.parseInt(operator));
+                monkey.addOperator(Long.parseLong(operator));
             }
 
             // Add Test
@@ -74,9 +74,9 @@ public class DayEleven {
                     monkeys.get(monkey).relief();
                     for (int monkeyItem = 0; monkeyItem < monkeys.get(monkey).items.size(); monkeyItem++) {
                         if (monkeys.get(monkey).items.get(monkeyItem) % monkeys.get(monkey).testCondition == 0) {
-                            monkeys.get(monkeys.get(monkey).testTrue).addItem(monkeys.get(monkey).items.get(monkeyItem).intValue());
+                            monkeys.get(monkeys.get(monkey).testTrue).addItem(monkeys.get(monkey).items.get(monkeyItem));
                         } else {
-                            monkeys.get(monkeys.get(monkey).testFalse).addItem(monkeys.get(monkey).items.get(monkeyItem).intValue());
+                            monkeys.get(monkeys.get(monkey).testFalse).addItem(monkeys.get(monkey).items.get(monkeyItem));
                         }
                     }
                     monkeys.get(monkey).items = new ArrayList<>();
@@ -105,24 +105,24 @@ public class DayEleven {
     public void partTwo(String path) {
         List<String> lines = FileReader.readFile(path);
         List<Monkey> monkeys = populateMonkeys(lines);
-        monkeys = playRoundsWithoutRelief(monkeys, 20);
+        Integer divisor = monkeys.stream().reduce(1, (current, monkey) -> current * monkey.testCondition, Integer::sum);
+
+        monkeys = playRounds(monkeys, 10000, divisor);
         monkeys = sort(monkeys);
         System.out.println("Monkey Business Levek: " + (monkeys.get(0).inspectCounter * monkeys.get(1).inspectCounter));
     }
 
-    List<Monkey> playRoundsWithoutRelief(List<Monkey> monkeys, int rounds) {
+    List<Monkey> playRounds(List<Monkey> monkeys, int rounds, int relief) {
         for (int round = 0; round < rounds; round++) {
             for (int monkey = 0; monkey < monkeys.size(); monkey++) {
                 if (monkeys.get(monkey).items.size() > 0) {
                     monkeys.get(monkey).inspectItems();
-                    if (round + 1 % 20 == 0) {
-                        monkeys.get(monkey).relief();
-                    }
+                    monkeys.get(monkey).relief(relief);
                     for (int monkeyItem = 0; monkeyItem < monkeys.get(monkey).items.size(); monkeyItem++) {
                         if (monkeys.get(monkey).items.get(monkeyItem) % monkeys.get(monkey).testCondition == 0) {
-                            monkeys.get(monkeys.get(monkey).testTrue).addItem(monkeys.get(monkey).items.get(monkeyItem).intValue());
+                            monkeys.get(monkeys.get(monkey).testTrue).addItem(monkeys.get(monkey).items.get(monkeyItem));
                         } else {
-                            monkeys.get(monkeys.get(monkey).testFalse).addItem(monkeys.get(monkey).items.get(monkeyItem).intValue());
+                            monkeys.get(monkeys.get(monkey).testFalse).addItem(monkeys.get(monkey).items.get(monkeyItem));
                         }
                     }
                     monkeys.get(monkey).items = new ArrayList<>();

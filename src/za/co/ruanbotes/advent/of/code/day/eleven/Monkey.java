@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Monkey {
-    List<Integer> items = new ArrayList<>();
+    List<Long> items = new ArrayList<>();
     Character operation;
-    Integer operator;
+    Long operator = null;
     Integer testCondition;
     Integer testTrue;
     Integer testFalse;
-    Long inspectCounter = 0l;
+    long inspectCounter = 0;
 
     public Monkey() {
 
@@ -22,21 +22,37 @@ public class Monkey {
         }
     }
 
-    public void inspectItems() {
-        this.inspectCounter += this.items.size();
+    public void relief(int relief) {
         for (int i = 0; i < this.items.size(); i++) {
+            this.items.set(i, this.items.get(i) % relief);
+        }
+    }
 
+    public void inspectItems() {
+        for (int i = 0; i < this.items.size(); i++) {
+            this.inspectCounter++;
             if (this.operation.equals('+')) {
-                this.items.set(i, this.items.get(i) + (this.operator == null ? this.items.get(i) : this.operator));
+                Long operator = getOperator(i);
+                this.items.set(i, this.items.get(i) + operator);
             } else if (this.operation.equals('-')) {
-                this.items.set(i, this.items.get(i) - (this.operator == null ? this.items.get(i) : this.operator));
+                Long operator = getOperator(i);
+                this.items.set(i, this.items.get(i) - operator);
             } else if (this.operation.equals('*')) {
-                this.items.set(i, this.items.get(i) * (this.operator == null ? this.items.get(i) : this.operator));
+                Long operator = getOperator(i);
+                this.items.set(i, this.items.get(i) * operator);
             }
         }
     }
 
-    public void addItem(Integer item) {
+    private Long getOperator(int item) {
+        if (this.operator == null) {
+            return this.items.get(item);
+        } else {
+            return this.operator;
+        }
+    }
+
+    public void addItem(Long item) {
         this.items.add(item);
     }
 
@@ -44,7 +60,7 @@ public class Monkey {
         this.operation = operation;
     }
 
-    public void addOperator(Integer operator) {
+    public void addOperator(Long operator) {
         this.operator = operator;
     }
 
