@@ -5,21 +5,27 @@ import za.co.ruanbotes.advent.of.code.day.four.DayFour;
 import za.co.ruanbotes.advent.of.code.day.one.DayOne;
 import za.co.ruanbotes.advent.of.code.day.seven.DaySeven;
 import za.co.ruanbotes.advent.of.code.day.six.DaySix;
+import za.co.ruanbotes.advent.of.code.day.thirteen.DayThirteen;
 import za.co.ruanbotes.advent.of.code.day.three.DayThree;
 import za.co.ruanbotes.advent.of.code.day.twelve.DayTwelve;
 import za.co.ruanbotes.advent.of.code.day.two.DayTwo;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println("********** Day 13 **********");
+        DayThirteen day = new DayThirteen();
+        day.run();
+        System.out.println("=============================");
+
 //        System.out.println("********** Day 12 **********");
 //        DayTwelve dayTwelve = new DayTwelve();
 //        dayTwelve.run();
 //        System.out.println("=============================");
 
-        System.out.println("********** Day 11 **********");
-        DayEleven day = new DayEleven();
-        day.run();
-        System.out.println("=============================");
+//        System.out.println("********** Day 11 **********");
+//        DayEleven day = new DayEleven();
+//        day.run();
+//        System.out.println("=============================");
 
 //        System.out.println("********** Day Eight **********");
 //        DayEight dayEight = new DayEight();
