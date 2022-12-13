@@ -5,6 +5,7 @@ import za.co.ruanbotes.advent.of.code.day.four.DayFour;
 import za.co.ruanbotes.advent.of.code.day.one.DayOne;
 import za.co.ruanbotes.advent.of.code.day.seven.DaySeven;
 import za.co.ruanbotes.advent.of.code.day.six.DaySix;
+import za.co.ruanbotes.advent.of.code.day.ten.DayTen;
 import za.co.ruanbotes.advent.of.code.day.three.DayThree;
 import za.co.ruanbotes.advent.of.code.day.twelve.DayTwelve;
 import za.co.ruanbotes.advent.of.code.day.two.DayTwo;
@@ -15,9 +16,14 @@ public class Main {
 //        DayTwelve dayTwelve = new DayTwelve();
 //        dayTwelve.run();
 //        System.out.println("=============================");
+//
+//        System.out.println("********** Day 11 **********");
+//        DayEleven day = new DayEleven();
+//        day.run();
+//        System.out.println("=============================");
 
-        System.out.println("********** Day 11 **********");
-        DayEleven day = new DayEleven();
+        System.out.println("********** Day 10 **********");
+        DayTen day = new DayTen();
         day.run();
         System.out.println("=============================");
 
